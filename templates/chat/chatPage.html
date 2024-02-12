@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html>
-<body>
-	<div
-	class="chat__item__container"
-	id="id_chat_item_container"
-	style="font-size: 20px"
-	>
+{% extends 'root.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block doc %}
+<div class="chat__item__container" id="id_chat_item_container" style="font-size: 20px">
 	<br />
-	<input type="text" id="id_message_send_input" />
+	<div class="d-grid-flex">
+		<input type="text" id="id_message_send_input" />
+	</div>
 	<button type="submit" id="id_message_send_button">Send Message</button>
 	<br />
 	<br />
-	</div>
-	<script>
+</div>
+<script>
 	const chatSocket = new WebSocket("ws://" + window.location.host + "/");
 	chatSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
@@ -39,6 +41,5 @@
 		document.querySelector("#id_message_send_input").value = "";
 		document.querySelector("#id_chat_item_container").appendChild(div);
 	};
-	</script>
-</body>
-</html>
+</script>
+{% endblock doc %}
